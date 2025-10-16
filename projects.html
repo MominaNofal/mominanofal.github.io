@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Projects — Momina Nofal</title>
+  <meta name="description" content="Personal projects by Momina Nofal." />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand"><a href="index.html">MN</a></div>
+      <ul>
+        <li><a href="projects.html">Personal Projects</a></li>
+        <li><a href="index.html#edu-exp">Education & Experience</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a class="nav-cta" href="Resume-mominanofal.pdf" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="section">
+      <h1>Personal Projects</h1>
+      <p class="subtitle">A few experiments and write‑ups from my ML/LLM tinkering.</p>
+    </header>
+
+    <section class="section project">
+      <h2>Quick Draw Diffusion</h2>
+      <div class="card article">
+        <p><strong>What it is:</strong> A compact diffusion training pipeline built around <code>HuggingFace UNet2DModel</code>, trained on five categories from Google QuickDraw (banana, apple, broom, broccoli, birthday cake). Each class is sampled (~1k sketches), normalized to 32×32 with padding, and combined with a class‑indicator channel so the model learns class‑conditioned noise prediction across timesteps.</p>
+        <p><strong>How it works:</strong> A noise scheduler controls timesteps; the model predicts noise and is optimized with MSE. Adam with a cosine schedule is used; utilities cover dataset IO, batching, and sampling to visualize learning.</p>
+        <p><a class="btn" href="https://github.com/MominaNofal/quick-draw-diffusion" target="_blank" rel="noopener">View Repository</a></p>
+      </div>
+    </section>
+
+    <section class="section project">
+      <h2>Stylistic LLM Fine Tuning</h2>
+      <div class="card article">
+        <p><strong>What it is:</strong> Notes and experiments in nudging an LLM’s <em>style</em> while preserving factuality and conversational ability. The initial run uses <em>TinyLlama‑1.1B‑Chat‑v1.0</em> on <em>karpathy/tiny_shakespeare</em> with <em>QLoRA</em>, adapting a small fraction of parameters to keep the footprint modest.</p>
+        <p><strong>Next Steps:</strong> Longer training, alternative adapters, and comparing prompt‑tuning vs. LoRA for controllability. Also developing a good evaluation technique to compare the finetuned vs base model.</p>
+        <p><a class="btn" href="https://github.com/MominaNofal/stylistic-fine-tuning" target="_blank" rel="noopener">View Repository</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    © <span id="year"></span> Momina Nofal. Built with vanilla HTML/CSS. Hosted on GitHub Pages.
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+</body>
+</html>

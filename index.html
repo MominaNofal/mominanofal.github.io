@@ -1,66 +1,286 @@
-!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Momina Nofal — Software Engineer</title><link rel="stylesheet" href="assets/styles.css"></head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Momina Nofal — ML/AI Engineer</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff; --bg2: #f7f7f5; --bg3: #f0efe9;
+    --text: #1a1a18; --text2: #5f5e5a; --text3: #888780;
+    --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.08);
+    --accent: #534AB7; --accent-bg: #EEEDFE; --accent-text: #3C3489;
+    --teal: #0F6E56; --teal-bg: #E1F5EE; --teal-text: #085041;
+    --tag-bg: #f0efe9; --tag-text: #5f5e5a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a; --bg2: #242422; --bg3: #2c2c2a;
+      --text: #f0efe9; --text2: #b4b2a9; --text3: #888780;
+      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.06);
+      --accent: #AFA9EC; --accent-bg: #26215C; --accent-text: #CECBF6;
+      --teal: #5DCAA5; --teal-bg: #04342C; --teal-text: #9FE1CB;
+      --tag-bg: #2c2c2a; --tag-text: #b4b2a9;
+    }
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+  nav { position: sticky; top: 0; background: var(--bg); border-bottom: 0.5px solid var(--border); z-index: 100; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+  .nav-logo { font-weight: 500; font-size: 15px; text-decoration: none; color: var(--text); letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text2); font-size: 14px; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--text); }
+  main { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0; border-bottom: 0.5px solid var(--border2); }
+  section:last-child { border-bottom: none; }
+
+  /* Hero */
+  .hero { padding-top: 5rem; padding-bottom: 4rem; }
+  .hero-label { font-size: 13px; color: var(--teal); background: var(--teal-bg); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 1.25rem; font-weight: 500; }
+  .hero h1 { font-size: 2rem; font-weight: 500; line-height: 1.25; margin-bottom: 1rem; color: var(--text); }
+  .hero-sub { font-size: 16px; color: var(--text2); margin-bottom: 1.75rem; max-width: 560px; line-height: 1.7; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
+  .tag { background: var(--tag-bg); color: var(--tag-text); font-size: 13px; padding: 4px 12px; border-radius: 20px; }
+  .tag.accent { background: var(--accent-bg); color: var(--accent-text); }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; transition: opacity 0.15s; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-secondary { border: 0.5px solid var(--border); color: var(--text2); }
+  .btn-secondary:hover { background: var(--bg2); }
+  .status-bar { margin-top: 2.5rem; padding: 1rem 1.25rem; background: var(--bg2); border-radius: 10px; border: 0.5px solid var(--border2); font-size: 13px; color: var(--text2); display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .status-item { display: flex; align-items: center; gap: 6px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); display: inline-block; }
+
+  /* Highlight work */
+  .section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--text3); text-transform: uppercase; margin-bottom: 1.75rem; }
+  .work-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+  .work-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .work-title { font-size: 15px; font-weight: 500; color: var(--text); }
+  .work-badge { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: var(--accent-bg); color: var(--accent-text); white-space: nowrap; font-weight: 500; }
+  .work-badge.teal { background: var(--teal-bg); color: var(--teal-text); }
+  .work-desc { font-size: 14px; color: var(--text2); margin-bottom: 1rem; line-height: 1.65; }
+  .work-metrics { display: flex; flex-wrap: wrap; gap: 8px; }
+  .metric { background: var(--bg2); border-radius: 6px; padding: 5px 10px; font-size: 12px; color: var(--text2); border: 0.5px solid var(--border2); }
+  .metric strong { color: var(--text); font-weight: 500; }
+  .work-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 0.5px solid var(--border2); }
+  .stack-tag { font-size: 12px; color: var(--text3); }
+  .stack-tag:not(:last-child)::after { content: '·'; margin-left: 6px; }
+
+  /* Timeline */
+  .timeline { list-style: none; }
+  .timeline-item { display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 0.5px solid var(--border2); }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-date { font-size: 13px; color: var(--text3); padding-top: 2px; }
+  .timeline-content h3 { font-size: 15px; font-weight: 500; margin-bottom: 3px; }
+  .timeline-content .tl-sub { font-size: 13px; color: var(--text2); margin-bottom: 0.5rem; }
+  .timeline-content p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .tl-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--accent-bg); color: var(--accent-text); margin-left: 8px; font-weight: 500; vertical-align: middle; }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .skill-group { background: var(--bg2); border-radius: 10px; padding: 1rem 1.25rem; }
+  .skill-group-label { font-size: 12px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.6rem; }
+  .skill-list { font-size: 13px; color: var(--text2); line-height: 1.9; }
+
+  /* Education */
+  .edu-item { padding: 1.25rem 0; border-bottom: 0.5px solid var(--border2); }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-school { font-size: 15px; font-weight: 500; }
+  .edu-meta { font-size: 13px; color: var(--text2); margin: 3px 0 0.5rem; }
+  .edu-detail { font-size: 13px; color: var(--text3); }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; }
+  .contact-item { display: flex; flex-direction: column; gap: 3px; padding: 1rem; background: var(--bg2); border-radius: 10px; }
+  .contact-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); font-weight: 500; }
+  .contact-value { font-size: 14px; color: var(--text); text-decoration: none; }
+  .contact-value:hover { color: var(--accent); }
+
+  footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--text3); border-top: 0.5px solid var(--border2); }
+
+  @media (max-width: 540px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .hero h1 { font-size: 1.6rem; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    .timeline-date { font-size: 12px; }
+  }
+</style>
+</head>
 <body>
-<nav><div class="container nav-inner"><div class="brand"><a href="index.html">MN</a></div>
-<ul><li><a href="projects.html">Personal Projects</a></li><li><a href="#edu-exp">Education & Experience</a></li><li><a href="#skills">Skills</a></li><li><a href="#contact">Contact</a></li><li><a class="nav-cta" href="Resume-mominanofal.pdf" target="_blank" rel="noopener">Resume</a></li></ul></div></nav>
-<main class="container">
-<section class="hero"><div class="hero-card"><h1>Hi, I’m Momina — Senior Software Engineer</h1>
-<p class="subtitle">Backend engineer building large‑scale web apps with a background in Machine Learning. Currently at <strong>Intuit</strong> (QuickBooks Online & IES).</p>
-<div class="chips"><span class="chip">Kotlin · Spring Boot</span><span class="chip">GraphQL · REST</span><span class="chip">PostgreSQL</span><span class="chip">Python · FastAPI</span><span class="chip">LLMs · LangChain</span><span class="chip">Docker · Kubernetes · AWS</span></div>
-<div class="cta"><a class="btn" href="projects.html">View Personal Projects</a><a class="btn" href="Resume-mominanofal.pdf" target="_blank" rel="noopener">Resume</a></div></div>
-<div class="card"><div class="kicker">Currently</div>
-<p>Shipping accounting workflows and an <span class="highlight">LLM‑powered </span> functionality that parses user data and auto‑generates QuickBooks transactions. Working with Kotlin/Springboot and Python/FastAPI.</p>
-<p class="meta">San Francisco Bay Area, CA · Updated October 16, 2025</p></div></section>
 
-<section id="edu-exp" class="section columns-2">
-  <div class="section-accent">
-    <h2>Education</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="role university cornell">Cornell University — M.Eng. in Computer Science</div>
-        <div class="meta">2021–2022 · Merit Scholarship · ML/AI concentration</div>
-        <p>Coursework: Optimization Methods, ML Engineering, Applied ML, Deep Learning, ML Hardware & Systems.</p>
+<nav>
+  <a class="nav-logo" href="index.html">MN</a>
+  <ul class="nav-links">
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="Resume-mominanofal.pdf">Resume</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-label">ML / AI Engineer</div>
+    <h1>Hi, I'm Momina —<br>I build production AI reasoning systems.</h1>
+    <p class="hero-sub">M.Eng. from Cornell (ML/AI). Currently at Intuit building LLM reasoning engines, GraphRAG pipelines, and eval frameworks for complex accounting Q&amp;A. Focused on systems that are accurate, auditable, and consistent.</p>
+    <div class="tag-row">
+      <span class="tag accent">LLM Systems</span>
+      <span class="tag accent">GraphRAG</span>
+      <span class="tag accent">Evaluation frameworks</span>
+      <span class="tag">Fine-tuning</span>
+      <span class="tag">Agentic pipelines</span>
+      <span class="tag">Python · Kotlin</span>
+    </div>
+    <div class="btn-row">
+      <a href="projects.html" class="btn btn-primary">Personal projects</a>
+      <a href="Resume-mominanofal.pdf" class="btn btn-secondary">Resume</a>
+    </div>
+    <div class="status-bar">
+      <span class="status-item"><span class="dot"></span> Senior Software Engineer, Intuit</span>
+      <span class="status-item">San Francisco Bay Area, CA</span>
+      <span class="status-item">Updated March 2026</span>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">Highlight work</div>
+
+    <div class="work-card">
+      <div class="work-card-header">
+        <span class="work-title">Accounting AI reasoning engine</span>
+        <span class="work-badge">Lead implementer</span>
       </div>
-      <div class="card">
-        <div class="role university">LUMS — BSc (Honors) in Computer Science</div>
-        <div class="meta">2016–2020 · Dean’s Honor List</div>
-        <p>Bachelor’s thesis: ML‑Guided Software Defined Networking.</p>
+      <p class="work-desc">End-to-end LLM system for complex accounting Q&amp;A. Built a multi-stage pipeline covering query classification, GraphRAG retrieval, structured decision workflow enforcement, and standardized output generation — producing consistent, citable, auditable answers grounded in GAAP decision frameworks.</p>
+      <div class="work-metrics">
+        <div class="metric">Correctness <strong>4.53 vs 4.36</strong> GPT-5.4</div>
+        <div class="metric">Completeness <strong>4.41 vs 4.38</strong> GPT-5.4</div>
+        <div class="metric">Retrieval accuracy <strong>12% → 70%</strong></div>
+        <div class="metric">Variance <strong>33% lower</strong> than prompted LLM</div>
+      </div>
+      <div class="work-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">FastAPI</span>
+        <span class="stack-tag">LangChain</span>
+        <span class="stack-tag">GraphRAG</span>
+        <span class="stack-tag">LanceDB</span>
+        <span class="stack-tag">Langfuse</span>
+        <span class="stack-tag">LLM-as-judge</span>
       </div>
     </div>
-  </div>
 
-  <div>
-    <h2>Experience</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="role">Intuit — Senior Software Engineer</div>
-        <div class="meta">Mountain View, CA · 2022–Present</div>
-        <ul class="list">
-          <li>Backend development for <span class="c-purple">QuickBooks Online</span> & <span class="c-purple">Intuit Enterprise Suite</span> using <span class="c-teal">Kotlin</span>, <span class="c-teal">Spring Boot</span>, <span class="c-amber">GraphQL/REST</span>, and <span class="c-green">PostgreSQL</span>.</li>
-          <li>Designed and implemented an <span class="c-purple">LLM‑powered tool</span> that parses user data and generates <span class="c-green">QuickBooks transactions</span>.</li>
-          <li>Built backend service (<span class="c-teal">FastAPI</span> + <span class="c-teal">LangChain</span>) enabling <span class="c-purple">GenAI</span> features.</li>
-          <li>Developed <span class="c-amber">async</span> & <span class="c-amber">parallel</span> update algorithms ensuring <span class="c-rose">consistency</span> and <span class="c-rose">performance</span> at scale.</li>
-        </ul>
+    <div class="work-card">
+      <div class="work-card-header">
+        <span class="work-title">Eval framework for domain-specific LLM systems</span>
+        <span class="work-badge teal">Eval design</span>
       </div>
-      <div class="card">
-        <div class="role">University of Michigan × LUMS — Research Associate</div>
-        <div class="meta">2020–2021</div>
-        <ul class="list">
-          <li>Studied Facebook groups as online safe spaces for women in the Global South; published at <a href="https://dl.acm.org/doi/10.1145/3555204" target="_blank" rel="noopener">ACM CSCW ’22</a>.</li>
-        </ul>
+      <p class="work-desc">Designed and owned offline and online evaluation infrastructure using Langfuse with an LLM-as-judge rubric. Covered 5 accounting topics, 3 difficulty levels, and multiple company size segments across 1,130 Q&amp;A pairs. Ran repeated eval sets to measure both accuracy and consistency, not just point-in-time performance.</p>
+      <div class="work-stack">
+        <span class="stack-tag">Langfuse</span>
+        <span class="stack-tag">LLM-as-judge</span>
+        <span class="stack-tag">GenOS rubrics</span>
+        <span class="stack-tag">Python</span>
       </div>
     </div>
-  </div>
-</section>
 
-<section id="skills" class="section"><h2>Skills</h2>
-<div class="grid grid-3"><div class="card"><div class="kicker">Languages</div><p>Kotlin, Python, C/C++, Java, Go, SQL, CUDA</p></div>
-<div class="card"><div class="kicker">Frameworks</div><p>Spring Boot, GraphQL, REST, PyTorch, scikit‑learn, Hibernate, FastAPI, NumPy, Pandas</p></div>
-<div class="card"><div class="kicker">Infra & Tools</div><p>Kubernetes, Docker, Jenkins, AWS</p></div></div></section>
+    <div class="work-card">
+      <div class="work-card-header">
+        <span class="work-title">LLM-powered transaction generation tool</span>
+        <span class="work-badge teal">Production</span>
+      </div>
+      <p class="work-desc">Led design and implementation of a tool that parses user-provided data and automates the creation of QuickBooks transactions, replacing the majority of manual workflow effort. Built on a Python FastAPI + LangChain backend service.</p>
+      <div class="work-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">FastAPI</span>
+        <span class="stack-tag">LangChain</span>
+        <span class="stack-tag">Kotlin</span>
+        <span class="stack-tag">GraphQL</span>
+      </div>
+    </div>
 
-<section id="contact" class="section"><h2>Contact</h2><div class="card"><p>Email: <a href="mailto:mominanofal@hotmail.com">mominanofal@hotmail.com</a></p><p>GitHub: <a href="https://github.com/MominaNofal">github.com/MominaNofal</a></p><p>Location: San Francisco Bay Area, CA</p></div></section>
+    <br>
+    <div class="section-label">Full experience</div>
+    <ul class="timeline">
+      <li class="timeline-item">
+        <span class="timeline-date">2022 – Present</span>
+        <div class="timeline-content">
+          <h3>Intuit <span class="tl-badge">Current</span></h3>
+          <div class="tl-sub">Senior Software Engineer · Mountain View, CA</div>
+          <p>Building production AI reasoning tools, RAG pipelines, and eval infrastructure for the accounting domain. Also led multiple backend accounting features for Intuit Enterprise Suite involving async algorithms and eventually consistent eventing workflows.</p>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <span class="timeline-date">2020 – 2021</span>
+        <div class="timeline-content">
+          <h3>University of Michigan × LUMS</h3>
+          <div class="tl-sub">Research Associate</div>
+          <p>Studied Facebook groups as online safe spaces for women in the Global South. Published at <a href="https://dl.acm.org/doi/10.1145/3555204" style="color: var(--accent);">ACM CSCW 2022</a>.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="education">
+    <div class="section-label">Education</div>
+    <div class="edu-item">
+      <div class="edu-school">Cornell University</div>
+      <div class="edu-meta">M.Eng. in Computer Science · 2021–2022 · Merit Scholarship</div>
+      <div class="edu-detail">Concentration: Machine Learning &amp; AI · Coursework: Optimization Methods, ML Engineering, Applied ML, Deep Learning, ML Hardware &amp; Systems</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-school">LUMS, Lahore</div>
+      <div class="edu-meta">BSc (Honors) in Computer Science · 2016–2020 · Dean's Honor List</div>
+      <div class="edu-detail">Thesis: ML-Guided Software Defined Networking</div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">ML &amp; AI</div>
+        <div class="skill-list">PyTorch · Scikit-learn<br>LangChain · GraphRAG<br>Langfuse · FastAPI<br>NumPy · Pandas · NLTK</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Languages</div>
+        <div class="skill-list">Python · Kotlin<br>SQL · C/C++<br>Java · Go · CUDA</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Backend &amp; Infra</div>
+        <div class="skill-list">Springboot · GraphQL<br>REST · Hibernate<br>PostgreSQL · AWS<br>Kubernetes · Docker</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <a class="contact-value" href="mailto:mominanofal@hotmail.com">mominanofal@hotmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">GitHub</span>
+        <a class="contact-value" href="https://github.com/MominaNofal">github.com/MominaNofal</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Portfolio</span>
+        <a class="contact-value" href="https://mominanofal.github.io">mominanofal.github.io</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">San Francisco Bay Area</span>
+      </div>
+    </div>
+  </section>
+
 </main>
-<footer class="container footer">© 2025 Momina Nofal. Built with vanilla HTML/CSS. Hosted on GitHub Pages.</footer>
-</body></html>
+
+<footer>© 2026 Momina Nofal · Built with vanilla HTML/CSS · Hosted on GitHub Pages</footer>
+
+</body>
+</html>

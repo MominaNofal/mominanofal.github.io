@@ -1,54 +1,142 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Personal Projects — Momina Nofal</title>
-  <meta name="description" content="Personal projects by Momina Nofal." />
-  <link rel="stylesheet" href="assets/styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Momina Nofal</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff; --bg2: #f7f7f5; --bg3: #f0efe9;
+    --text: #1a1a18; --text2: #5f5e5a; --text3: #888780;
+    --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.08);
+    --accent: #534AB7; --accent-bg: #EEEDFE; --accent-text: #3C3489;
+    --teal: #0F6E56; --teal-bg: #E1F5EE; --teal-text: #085041;
+    --tag-bg: #f0efe9; --tag-text: #5f5e5a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a; --bg2: #242422; --bg3: #2c2c2a;
+      --text: #f0efe9; --text2: #b4b2a9; --text3: #888780;
+      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.06);
+      --accent: #AFA9EC; --accent-bg: #26215C; --accent-text: #CECBF6;
+      --teal: #5DCAA5; --teal-bg: #04342C; --teal-text: #9FE1CB;
+      --tag-bg: #2c2c2a; --tag-text: #b4b2a9;
+    }
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+  nav { position: sticky; top: 0; background: var(--bg); border-bottom: 0.5px solid var(--border); z-index: 100; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+  .nav-logo { font-weight: 500; font-size: 15px; text-decoration: none; color: var(--text); letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text2); font-size: 14px; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--text); }
+  main { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .page-header { padding: 4rem 0 2.5rem; border-bottom: 0.5px solid var(--border2); }
+  .section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--text3); text-transform: uppercase; margin-bottom: 0.6rem; }
+  .page-header h1 { font-size: 1.75rem; font-weight: 500; margin-bottom: 0.6rem; }
+  .page-header p { font-size: 15px; color: var(--text2); max-width: 520px; }
+
+  .project-card { padding: 2rem 0; border-bottom: 0.5px solid var(--border2); }
+  .project-card:last-child { border-bottom: none; padding-bottom: 4rem; }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .project-title { font-size: 17px; font-weight: 500; }
+  .project-badge { font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+  .badge-purple { background: var(--accent-bg); color: var(--accent-text); }
+  .badge-teal { background: var(--teal-bg); color: var(--teal-text); }
+  .project-desc { font-size: 14px; color: var(--text2); margin-bottom: 1.25rem; line-height: 1.7; }
+  .project-detail { margin-bottom: 1.25rem; }
+  .detail-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); font-weight: 500; margin-bottom: 0.4rem; }
+  .detail-text { font-size: 14px; color: var(--text2); line-height: 1.65; }
+  .project-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; padding-top: 1rem; border-top: 0.5px solid var(--border2); }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-tag { font-size: 12px; background: var(--bg2); padding: 3px 10px; border-radius: 20px; color: var(--text3); }
+  .project-link { font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 500; }
+  .project-link:hover { opacity: 0.8; }
+  .next-steps { background: var(--bg2); border-radius: 10px; padding: 0.85rem 1rem; margin-top: 1rem; }
+  .next-steps-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); margin-bottom: 0.35rem; }
+  .next-steps-text { font-size: 13px; color: var(--text2); }
+
+  footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--text3); border-top: 0.5px solid var(--border2); }
+
+  @media (max-width: 540px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
 </head>
 <body>
-  <nav>
-    <div class="container nav-inner">
-      <div class="brand"><a href="index.html">MN</a></div>
-      <ul>
-        <li><a href="projects.html">Personal Projects</a></li>
-        <li><a href="index.html#edu-exp">Education & Experience</a></li>
-        <li><a href="index.html#skills">Skills</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-        <li><a class="nav-cta" href="Resume-mominanofal.pdf" target="_blank" rel="noopener">Resume</a></li>
-      </ul>
+
+<nav>
+  <a class="nav-logo" href="index.html">MN</a>
+  <ul class="nav-links">
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="Resume-mominanofal.pdf">Resume</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="page-header">
+    <div class="section-label">Personal projects</div>
+    <h1>ML experiments &amp; explorations</h1>
+    <p>Side projects where I explore modeling techniques outside of work — fine-tuning, diffusion, and things I'm actively building.</p>
+  </div>
+
+  <div class="project-card">
+    <div class="project-header">
+      <span class="project-title">Stylistic LLM fine-tuning</span>
+      <span class="project-badge badge-purple">Fine-tuning · LoRA</span>
     </div>
-  </nav>
-
-  <main class="container">
-    <header class="section">
-      <h1>Personal Projects</h1>
-      <p class="subtitle">A few experiments and write‑ups from my ML/LLM tinkering.</p>
-    </header>
-
-    <section class="section project">
-      <h2>Quick Draw Diffusion</h2>
-      <div class="card article">
-        <p><strong>What it is:</strong> A compact diffusion training pipeline built around <code>HuggingFace UNet2DModel</code>, trained on five categories from Google QuickDraw (banana, apple, broom, broccoli, birthday cake). Each class is sampled (~1k sketches), normalized to 32×32 with padding, and combined with a class‑indicator channel so the model learns class‑conditioned noise prediction across timesteps.</p>
-        <p><strong>How it works:</strong> A noise scheduler controls timesteps; the model predicts noise and is optimized with MSE. Adam with a cosine schedule is used; utilities cover dataset IO, batching, and sampling to visualize learning.</p>
-        <p><a class="btn" href="https://github.com/MominaNofal/quick-draw-diffusion" target="_blank" rel="noopener">View Repository</a></p>
+    <p class="project-desc">Exploration in nudging an LLM's writing style while preserving factuality and conversational ability. Initial run uses TinyLlama-1.1B-Chat on karpathy/tiny_shakespeare with QLoRA, adapting a small fraction of parameters to keep compute footprint modest.</p>
+    <div class="project-detail">
+      <div class="detail-label">Approach</div>
+      <div class="detail-text">QLoRA for parameter-efficient fine-tuning. Comparing prompted style transfer vs. adapter-based fine-tuning for controllability. Working on building a proper eval to compare fine-tuned vs. base model outputs — this is the harder problem.</div>
+    </div>
+    <div class="next-steps">
+      <div class="next-steps-label">In progress</div>
+      <div class="next-steps-text">Extending to longer training runs, alternative adapter configs, and developing a meaningful eval methodology for style vs. faithfulness tradeoffs.</div>
+    </div>
+    <div class="project-footer">
+      <div class="stack-row">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">PyTorch</span>
+        <span class="stack-tag">QLoRA</span>
+        <span class="stack-tag">TinyLlama</span>
+        <span class="stack-tag">HuggingFace</span>
       </div>
-    </section>
+      <a class="project-link" href="https://github.com/MominaNofal/stylistic-fine-tuning">View on GitHub →</a>
+    </div>
+  </div>
 
-    <section class="section project">
-      <h2>Stylistic LLM Fine Tuning</h2>
-      <div class="card article">
-        <p><strong>What it is:</strong> Notes and experiments in nudging an LLM’s <em>style</em> while preserving factuality and conversational ability. The initial run uses <em>TinyLlama‑1.1B‑Chat‑v1.0</em> on <em>karpathy/tiny_shakespeare</em> with <em>QLoRA</em>, adapting a small fraction of parameters to keep the footprint modest.</p>
-        <p><strong>Next Steps:</strong> Longer training, alternative adapters, and comparing prompt‑tuning vs. LoRA for controllability. Also developing a good evaluation technique to compare the finetuned vs base model.</p>
-        <p><a class="btn" href="https://github.com/MominaNofal/stylistic-fine-tuning" target="_blank" rel="noopener">View Repository</a></p>
+  <div class="project-card">
+    <div class="project-header">
+      <span class="project-title">Quick Draw diffusion model</span>
+      <span class="project-badge badge-teal">Diffusion · Generative</span>
+    </div>
+    <p class="project-desc">A compact diffusion training pipeline trained on five categories from Google's Quick Draw dataset (banana, apple, broom, broccoli, birthday cake). Built to understand diffusion model internals — noise scheduling, class conditioning, and the training loop — below the API layer.</p>
+    <div class="project-detail">
+      <div class="detail-label">How it works</div>
+      <div class="detail-text">Uses HuggingFace UNet2DModel. Sketches are normalized to 32×32 with padding and combined with a class-indicator channel so the model learns class-conditioned noise prediction across timesteps. Noise scheduler controls timesteps; model predicts noise and is optimized with MSE. Adam with cosine schedule.</div>
+    </div>
+    <div class="project-footer">
+      <div class="stack-row">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">PyTorch</span>
+        <span class="stack-tag">HuggingFace Diffusers</span>
+        <span class="stack-tag">UNet2DModel</span>
       </div>
-    </section>
-  </main>
+      <a class="project-link" href="https://github.com/MominaNofal/quick-draw-diffusion">View on GitHub →</a>
+    </div>
+  </div>
 
-  <footer class="container footer">
-    © <span id="year"></span> Momina Nofal. Built with vanilla HTML/CSS. Hosted on GitHub Pages.
-  </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+</main>
+
+<footer>© 2026 Momina Nofal · Built with vanilla HTML/CSS · Hosted on GitHub Pages</footer>
+
 </body>
 </html>
